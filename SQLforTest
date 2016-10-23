@@ -1,0 +1,11 @@
+
+/* please contact Stoytcho Delitchev e-mail delitchev@yahoo.com */
+/* or Paisley e-mail: workforus@compucorp.co.uk                 */
+SELECT civicrm_contact.display_name, civicrm_contact.organization_name
+    ,count(civicrm_contact.display_name) AS count
+FROM civicrm_case_contact
+JOIN civicrm_contact
+ON civicrm_contact.id = civicrm_case_contact.contact_id
+JOIN civicrm_case ON civicrm_case_contact.case_id = civicrm_case.id
+WHERE civicrm_case.is_deleted = 0 AND civicrm_case.status_id = 1
+GROUP BY civicrm_contact.display_name, civicrm_contact.organization_name;
